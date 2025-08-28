@@ -1,5 +1,6 @@
 import {Alert} from 'react-native';
 
+// Display the alert dialog with provided configuration
 export const showConfirmDialog = ({
   title = 'Are you sure?',
   message,

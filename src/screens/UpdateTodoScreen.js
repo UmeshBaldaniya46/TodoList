@@ -9,20 +9,30 @@ import {
 } from 'react-native';
 import useTodo from '../hooks/useTodo';
 
+/**
+ * Screen for viewing, editing, or deleting an existing todo.
+ * Allows toggling between view and edit modes of task.
+ */
 function UpdateTodoScreen({navigation, route}) {
+  // Custom hook provides the current task and action handlers
   const {task, handleDelete, handleSave} = useTodo(
     navigation,
     route?.params?.id,
   );
 
+  // Extract the original task text or fallback to empty string
   const initialTodo = task?.text || '';
+
+  // Local state for edit mode and edited text
   const [isEditing, setIsEditing] = useState(false);
   const [editedTodo, setEditedTodo] = useState(initialTodo);
 
+  // Enable editing mode
   const handleUpdate = () => {
     setIsEditing(true);
   };
 
+  // Cancel editing and reset input
   const handleCancel = () => {
     setEditedTodo(initialTodo);
     setIsEditing(false);

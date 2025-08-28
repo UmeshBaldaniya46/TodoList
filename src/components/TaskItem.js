@@ -1,6 +1,10 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
+/**
+ * TaskItem component - renders a task as a touchable card with data.
+ * onClick - Callback function triggered when the card is pressed.
+ */
 function TaskItem({task, onClick}) {
   const formattedDate = new Date(task.createdAt).toLocaleString();
 

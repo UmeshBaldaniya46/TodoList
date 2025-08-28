@@ -3,9 +3,17 @@ import {FlatList, View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import TaskItem from '../components/TaskItem';
 import useTodoList from '../hooks/useTodoList';
 
+/**
+ * Screen component to display the list of active tasks.
+ * Users can add, update, or delete all tasks from this screen.
+ */
 function TodoListScreen({navigation}) {
+  // Get active tasks and the "clear all" handler from custom hook
   const {tasks, handleClearAll} = useTodoList();
 
+  /**
+   * Navigate to the "UpdateTodo" screen with the selected task ID.
+   */
   const handlePress = useCallback(
     id => {
       navigation.navigate('UpdateTodo', {id});
@@ -13,6 +21,9 @@ function TodoListScreen({navigation}) {
     [navigation],
   );
 
+  /**
+   * Navigate to the "AddTodo" screen to create a new task.
+   */
   const handleAddTask = useCallback(() => {
     navigation.navigate('AddTodo');
   }, [navigation]);

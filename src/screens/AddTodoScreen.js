@@ -8,8 +8,15 @@ import {
 } from 'react-native';
 import useTodo from '../hooks/useTodo';
 
+/**
+ * Screen for adding a new todo task.
+ * Uses a text input and a button to submit the task.
+ */
 function AddTodoScreen({navigation}) {
+  // Local state to hold the user's todo input
   const [todo, setTodo] = useState('');
+
+  // Get the add task handler from custom hook
   const {handleAdd} = useTodo(navigation);
 
   return (
