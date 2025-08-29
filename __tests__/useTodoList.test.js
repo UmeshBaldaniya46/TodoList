@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {deleteAllTask} from '../src/redux/actions/tasksActions';
 import {showConfirmDialog} from '../src/components/ConfirmDialog';
 import {requireAuth} from '../src/utils';
+import Strings from '../src/constants/strings';
 
 // Mocks
 jest.mock('react-redux', () => ({
@@ -57,9 +58,9 @@ describe('useTodoList', () => {
 
     expect(showConfirmDialog).toHaveBeenCalledWith(
       expect.objectContaining({
-        title: 'Confirm Delete',
-        message: 'Are you sure you want to delete all todos?',
-        confirmText: 'Delete',
+        title: Strings.confirmDeleteTitle,
+        message: Strings.confirmDeleteAllMessage,
+        confirmText: Strings.delete,
         onConfirm: expect.any(Function),
       }),
     );

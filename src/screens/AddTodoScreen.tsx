@@ -1,22 +1,17 @@
 import React, {useState} from 'react';
-import {
-  View,
-  TextInput,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import {View, TextInput, StyleSheet} from 'react-native';
 import useTodo from '../hooks/useTodo';
+import Strings from '../constants/strings';
+import Colors from '../constants/colors';
+import Button from '../components/Button';
 
 /**
  * Screen for adding a new todo task.
  * Uses a text input and a button to submit the task.
  */
-function AddTodoScreen({navigation}) {
-  // Local state to hold the user's todo input
-  const [todo, setTodo] = useState('');
+function AddTodoScreen({navigation}: any): JSX.Element {
+  const [todo, setTodo] = useState<string>('');
 
-  // Get the add task handler from custom hook
   const {handleAdd} = useTodo(navigation);
 
   return (
@@ -24,20 +19,19 @@ function AddTodoScreen({navigation}) {
       <TextInput
         value={todo}
         onChangeText={setTodo}
-        placeholder="Enter your todo..."
+        placeholder={Strings.todoPlaceholder}
         style={styles.input}
         multiline
         numberOfLines={4}
         textAlignVertical="top"
       />
 
-      <TouchableOpacity
+      <Button
+        title={Strings.addTodo}
+        onPress={() => handleAdd(todo)}
+        backgroundColor={Colors.blue}
         style={styles.addButton}
-        onPress={() => {
-          handleAdd(todo);
-        }}>
-        <Text style={styles.addButtonText}>Add</Text>
-      </TouchableOpacity>
+      />
     </View>
   );
 }
@@ -46,11 +40,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
   },
   input: {
     height: 120,
-    borderColor: '#ccc',
+    borderColor: Colors.grey88,
     borderWidth: 1,
     paddingHorizontal: 15,
     paddingVertical: 10,
@@ -58,23 +52,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     fontSize: 16,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: Colors.background,
   },
   addButton: {
-    backgroundColor: '#4CAF50',
     paddingVertical: 15,
     borderRadius: 30,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 3},
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    elevation: 5,
-  },
-  addButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: '600',
   },
 });
 

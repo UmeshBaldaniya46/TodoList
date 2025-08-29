@@ -9,6 +9,7 @@ import {
 import {Alert} from 'react-native';
 import {showConfirmDialog} from '../src/components/ConfirmDialog';
 import {requireAuth} from '../src/utils';
+import Strings from '../src/constants/strings';
 
 // Mocks
 jest.mock('react-redux', () => ({
@@ -58,7 +59,7 @@ describe('useTodo', () => {
   it('should show alert if todo is empty on handleAdd', async () => {
     const {result} = renderHook(() => useTodo(mockNavigation));
     await act(() => result.current.handleAdd(''));
-    expect(Alert.alert).toHaveBeenCalledWith('Please enter a todo');
+    expect(Alert.alert).toHaveBeenCalledWith(Strings.emptyTodoAlert);
   });
 
   it('should dispatch addTask if todo is valid', async () => {

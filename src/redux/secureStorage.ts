@@ -1,19 +1,19 @@
 import * as SecureStore from 'expo-secure-store';
 
-const sanitizeKey = (key) => key.replace(/[^a-zA-Z0-9._-]/g, '_');
+const sanitizeKey = (key: string): string => key.replace(/[^a-zA-Z0-9._-]/g, '_');
 
 export const secureStorage = {
-  setItem: async (key, value) => {
+  setItem: async (key: string, value: string): Promise<void> => {
     const safeKey = sanitizeKey(key);
     await SecureStore.setItemAsync(safeKey, value);
   },
 
-  getItem: async (key) => {
+  getItem: async (key: string): Promise<string | null> => {
     const safeKey = sanitizeKey(key);
     return await SecureStore.getItemAsync(safeKey);
   },
 
-  removeItem: async (key) => {
+  removeItem: async (key: string): Promise<void> => {
     const safeKey = sanitizeKey(key);
     await SecureStore.deleteItemAsync(safeKey);
   },
